@@ -19,10 +19,10 @@ export function Summary({ dates, freezeDates }) {
   for (let i = 1; i < dates.length; i++) {
     let diff = differenceInDays(dates[i], dates[i - 1]);
 
-    if (diff === 1 || (freezeDates.includes(dates[i - 1]) && diff === 2)) {
+    if (diff === 1) {
       // Increment streak count for consecutive dates or freeze dates
       currentStreakCount++;
-      if (freezeDates.includes(dates[i - 1])) {
+      if (freezeDates.includes(dates[i])) {
         freezeCount++;
       }
     } else {
