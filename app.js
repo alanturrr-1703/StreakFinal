@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const userStreakRouter = require('./routes/userStreak');
 const usersRouter = require('./routes/users');
 
 // Middleware
