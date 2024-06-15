@@ -1,0 +1,62 @@
+// features/summary.js
+
+const { differenceInDays, isToday, isYesterday, isBefore, parse } = require('date-fns');
+
+export function summary({ dates, freezeDates }) {
+    const streaks = [];
+    let currentStreak = 0;
+    let longestStreak = 0;
+    let todayInStreak = false;
+    let withinCurrentStreak = false;
+
+    // Calculate streaks
+    dates.forEach((date, index) => {
+        if (index === 0) {
+            currentStreak = 1;
+            longestStreak = 1;
+            streaks.push(1);
+            return;
+        }
+
+        const prevDate = parse(dates[index - 1]);
+        const currentDate = parse(date);
+
+        const daysDifference = differenceInDays(currentDate, prevDate);
+
+        if (daysDifference === 1) {
+            currentStreak++;
+            longestStreak = Math.max(longestStreak, currentStreak);
+            streaks.push(currentStreak);
+        } else {
+            streaks.push(1);
+            currentStreak = 1;
+        }
+    });
+
+    const freezePerStreak = streaks.map((streak, index) => {
+        const freezeDate = parse(freezeDates[index]);
+        return dates.includes(freezeDates[index]) ? 1 : 0;
+    });
+
+    const streakAfterFreeze = streaks.map((streak, index) => {
+        const freezeDate = parse(freezeDates[index]);
+        const lastDate = parse(dates[index]);
+        return isBefore(freezeDate, lastDate) ? streak - freezePerStreak[index] : streak;
+    });
+
+    todayInStreak = isToday(parse(dates[dates.length - 1])) || isYesterday(parse(dates[dates.length - 1]));
+
+    withinCurrentStreak = dates.includes(dates[dates.length - 1]) || dates.includes(dates[dates.length - 2]);
+
+    return {
+        currentStreak,
+        longestStreak,
+        streaks,
+        freezePerStreak,
+        streakAfterFreeze,
+        todayInStreak,
+        withinCurrentStreak,
+    };
+}
+
+module.exports = { summary };
