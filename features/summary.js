@@ -26,7 +26,7 @@ export function Summary({ dates, freezeDates }) {
     if (diff === 1) {
       // Increment streak count for consecutive dates and increment freeze count for freeze dates in that streak
       currentStreakCount++;
-      if (freezeDatesHasDate(dates[i - 1])) {
+      if (freezeDatesHasDate(dates[i - 1]) || freezeDatesHasDate(dates[i])) {
         console.log(dates[i])
         freezeCount++;
       }
