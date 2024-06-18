@@ -1,4 +1,4 @@
-import { format, parseISO, subDays, isSameDay } from 'date-fns';
+const { format, parseISO, subDays, isSameDay } = require('date-fns');
 
 export function trackRecord({ dates, length = 7, endDate = new Date() }) {
   dates = dates.map(date => parseISO(date)).sort((a, b) => a - b);

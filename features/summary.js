@@ -1,4 +1,4 @@
-import { parseISO, isToday, isYesterday, differenceInDays } from 'date-fns';
+const { differenceInDays, isToday, isYesterday, parseISO } = require('date-fns');
 
 export function Summary({ dates, freezeDates }) {
   // Parse and sort dates

@@ -1,4 +1,4 @@
-import { format, parseISO, differenceInDays } from 'date-fns';
+const { format, parseISO, differenceInDays } = require('date-fns');
 
 export function streakRanges(dates) {
   dates = dates.map(date => parseISO(date)).sort((a, b) => a - b);
