@@ -1,4 +1,5 @@
-import { parseISO, isToday, isYesterday, differenceInDays } from 'date-fns';
+import { parseISO, isToday, isYesterday, differenceInDays, isEqual } from 'date-fns';
+import { is } from 'date-fns/locale/is';
 
 export function Summary({ dates, freezeDates }) {
   // Parse and sort dates
@@ -16,13 +17,17 @@ export function Summary({ dates, freezeDates }) {
   let currentStreakCount = 1;
   let freezeCount = 0;
 
+  console.log(dates)
+  console.log(freezeDates)
+
   for (let i = 1; i < dates.length; i++) {
     let diff = differenceInDays(dates[i], dates[i - 1]);
 
     if (diff === 1) {
       // Increment streak count for consecutive dates and increment freeze count for freeze dates in that streak
       currentStreakCount++;
-      if (freezeDates.includes(dates[i])) {
+      if (freezeDatesHasDate(dates[i - 1])) {
+        console.log(dates[i])
         freezeCount++;
       }
     } else {
@@ -65,4 +70,22 @@ export function Summary({ dates, freezeDates }) {
     todayInStreak: todayInStreak,
     withinCurrentStreak: withinCurrentStreak
   };
+  // binary search for optimized implementation
+  function freezeDatesHasDate(a){
+    let left = 0
+    let right = freezeDates.length - 1
+    while(left <= right){
+      const mid = Math.floor((left + right) / 2)
+      if(isEqual(freezeDates[mid], a)){
+        return true
+      } 
+      else if(differenceInDays(freezeDates[mid], a) < 0){
+        left = mid + 1
+      }
+      else{
+        right = mid - 1
+      }
+    }
+    return false
+  }
 }
