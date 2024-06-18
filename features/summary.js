@@ -31,7 +31,7 @@ export function Summary({ dates, freezeDates }) {
         freezeCount++;
       }
     } else {
-      // Finalize the current streak and reset counts
+      // Finalize the current streak and reset count
       streaks.push(currentStreakCount);
       freezePerStreak.push(freezeCount);
       streakAfterFreeze.push(currentStreakCount - freezeCount);
