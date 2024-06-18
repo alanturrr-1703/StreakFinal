@@ -34,7 +34,7 @@ const summaryResult = Summary({ dates, freezeDates });
 console.log("Summary Result:", summaryResult);
 ```
 returns
-'''
+```js
 Summary Result: {
   currentStreak: 2,
   longestStreak: 7,
