@@ -65,3 +65,4 @@ export function Summary({ dates, freezeDates }) {
     withinCurrentStreak: withinCurrentStreak
   };
 }
+module.exports{Summary}

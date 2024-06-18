@@ -13,3 +13,4 @@ export function trackRecord({ dates, length = 7, endDate = new Date() }) {
 
   return trackRecord;
 }
+module.exports{trackRecord}
