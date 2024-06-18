@@ -252,6 +252,7 @@
     "to-fast-properties": "^2.0.0",
     "to-regex-range": "^5.0.1",
     "toidentifier": "^1.0.1",
+    "type" : "module",
     "type-detect": "^4.0.8",
     "type-fest": "^0.21.3",
     "type-is": "^1.6.18",
