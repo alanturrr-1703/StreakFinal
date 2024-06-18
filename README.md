@@ -56,5 +56,5 @@ Summary Result: {
 ## Installation
 
 ```bash
-npm install streakFinal
+npm install streakfinal
 
