@@ -56,5 +56,5 @@ Summary Result: {
 ## Installation
 
 ```bash
-npm install alanturrr-1703/streakFinal
+npm streakFinal
 
