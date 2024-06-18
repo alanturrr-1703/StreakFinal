@@ -12,7 +12,6 @@ export function Summary({ dates, freezeDates }) {
   let longestStreak = 0;
   let todayInStreak = false;
   let withinCurrentStreak = false;
-
   let currentStreakCount = 1;
   let freezeCount = 0;
 
