@@ -45,3 +45,15 @@ Summary Result: {
   withinCurrentStreak: false
 }
 ```
+**StreakFinal** is a Node.js module that provides functionality to manage streaks in a list of dates using the `date-fns` library. It offers three main features:
+
+1. **Summary**: Finds streaks within a list of dates and returns information about the current streak, the longest streak, whether today is in the streak, and whether the current streak is still valid. It also handles freeze dates where the streak was paused.
+
+2. **Streak Ranges**: Finds the start and end dates of each streak, in addition to the duration of each streak.
+
+3. **Track Record**: Returns a list of dates from a specified date into the past with the provided dates marked as true.
+
+## Installation
+
+```bash
+npm install yourusername/streakFinal
