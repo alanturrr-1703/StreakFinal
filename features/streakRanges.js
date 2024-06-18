@@ -30,4 +30,4 @@ export function streakRanges(dates) {
     end: range.end ? format(range.end, 'EEE MMM dd yyyy HH:mm:ss XXX') : null
   }));
 }
-module.exports{streakRanges};
+module.exports = {streakRanges};
