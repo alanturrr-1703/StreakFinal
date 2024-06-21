@@ -1,7 +1,6 @@
-const { summary } = require('./features/summary');
-const { streakRanges } = require('./features/streakRanges');
-const { trackRecord } = require('./features/trackRecord');
-
+import { Summary } from './features/summary.js';
+import { streakRanges } from './features/streakRanges.js';
+import { trackRecord } from './features/trackRecord.js';
 module.exports = {
   summary,
   streakRanges,
