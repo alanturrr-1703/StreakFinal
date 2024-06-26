@@ -1,11 +1,9 @@
-import { parseISO, isToday, isYesterday, differenceInDays, isEqual } from 'date-fns';
+import { parse, isToday, isYesterday, differenceInDays, isEqual } from 'date-fns';
 
 export function Summary({ dates, freezeDates }) {
-  // Parse and sort dates
-  dates = dates.map(date => parseISO(date)).sort((a, b) => a - b);
-  freezeDates = freezeDates.map(date => parseISO(date)).sort((a, b) => a - b);
+  dates = dates.map(date => parse(date, 'yyyy/MM/dd', new Date())).sort((a, b) => a - b);
+  freezeDates = freezeDates.map(date => parse(date, 'yyyy/MM/dd', new Date())).sort((a, b) => a - b);
 
-  // Initialize variables
   let streaks = [];
   let freezePerStreak = [];
   let streakAfterFreeze = [];
@@ -20,13 +18,11 @@ export function Summary({ dates, freezeDates }) {
     let diff = differenceInDays(dates[i], dates[i - 1]);
 
     if (diff === 1) {
-      // Increment streak count for consecutive dates and increment freeze count for freeze dates in that streak
       currentStreakCount++;
       if (freezeDatesHasDate(dates[i - 1], freezeDates) || freezeDatesHasDate(dates[i], freezeDates)) {
         freezeCount++;
       }
     } else {
-      // Finalize the current streak and reset count
       streaks.push(currentStreakCount);
       freezePerStreak.push(freezeCount);
       streakAfterFreeze.push(currentStreakCount - freezeCount);
@@ -38,7 +34,6 @@ export function Summary({ dates, freezeDates }) {
     }
   }
 
-  // Push the last streak
   streaks.push(currentStreakCount);
   freezePerStreak.push(freezeCount);
   streakAfterFreeze.push(currentStreakCount - freezeCount);
@@ -46,7 +41,6 @@ export function Summary({ dates, freezeDates }) {
     longestStreak = currentStreakCount - freezeCount;
   }
 
-  // Determine the current streak
   let lastDate = dates[dates.length - 1];
 
   if (isToday(lastDate)) {

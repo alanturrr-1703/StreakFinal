@@ -1,9 +1,9 @@
-import { format, parseISO, differenceInDays } from 'date-fns';
+import { format, parse, differenceInDays } from 'date-fns';
 
 export function streakRanges(dates) {
   if (dates.length === 0) return [];
 
-  dates = dates.map(date => parseISO(date)).sort((a, b) => a - b);
+  dates = dates.map(date => parse(date, 'yyyy/MM/dd', new Date())).sort((a, b) => a - b);
 
   let ranges = [];
   let currentStreakStart = dates[0];
